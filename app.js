@@ -142,7 +142,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.post('/', (req, res, next) => {
+app.post('/emails', (req, res, next) => {
   const options = {
     from: req.body.email_options.from,
     to: req.body.email_options.to,
