@@ -1,17 +1,20 @@
 const nodemailer = require('nodemailer');
+const sendGridTransport = require('nodemailer-sendgrid-transport');
 
 
-// Note this only works if less secure apps are
-// enabled with Google
-const _transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
+const _options = {
+  service: 'SendGrid',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
+    api_user: process.env.SENDGRID_USERNAME,
+    api_key: process.env.SENDGRID_PASSWORD
   }
-});
+};
+
+
+const _transporter = nodemailer
+  .createTransport(
+    sendGridTransport(_options)
+  );
 
 
 const EmailService = {};
