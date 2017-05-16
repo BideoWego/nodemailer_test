@@ -1,7 +1,9 @@
 const nodemailer = require('nodemailer');
+
+// Use the SendGrid transport
 const sendGridTransport = require('nodemailer-sendgrid-transport');
 
-
+// Use Heroku's SendGrid ENV variables
 const _options = {
   service: 'SendGrid',
   auth: {
@@ -10,7 +12,7 @@ const _options = {
   }
 };
 
-
+// Create the SendGrid transport
 const _transporter = nodemailer
   .createTransport(
     sendGridTransport(_options)
